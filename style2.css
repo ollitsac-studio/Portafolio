@@ -1,0 +1,113 @@
+/* =========================================
+   OLLITSAC STUDIO — CREATIVE PORTFOLIO
+   HTML + CSS / SIN JAVASCRIPT
+========================================= */
+
+:root {
+    --white: #f8f8f8;
+    --blue: #063ded;
+    --dark: #1f1f1f;
+    --gray: #777777;
+    --line: rgba(31, 31, 31, 0.18);
+
+    --font-main: "Roboto Condensed", roboto;
+    --font-mono: "DM Mono", C;
+
+    --page-padding: clamp(20px, 6vw, 90px);
+    --section-space: clamp(85px, 12vw, 160px);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    background: var(--white);
+    color: var(--dark);
+    font-family: var(--font-main);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+body::selection {
+    background: var(--blue);
+    color: white;
+}
+
+::selection {
+    background: var(--blue);
+    color: white;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font: roboto;
+}
+
+button,
+a,
+select {
+    -webkit-tap-highlight-color: transparent;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.section {
+    padding-left: var(--page-padding);
+    padding-right: var(--page-padding);
+}
+
+.eyebrow {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    line-height: 1.7;
+}
+
+.blue-dot {
+    color: var(--blue);
+}
+
+.outline-text {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--dark);
+}
+
+/* =========================================
+   NAVEGACIÓN
+========================================= */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+
+  width: 100%;
+  padding: 16px clamp(20px, 6vw, 90px);
+
+  background: #f8f8f8;
+  border-bottom: 1px solid rgba(31, 31, 31, 0.18);
+}

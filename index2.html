@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f8f8f8">
+    <meta name="description" content="Portafolio creativo de diseño gráfico, identidad visual, branding y diseño digital.">
+
+    <title>OLLITSAC STUDIO</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Roboto+Condensed:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Contenedor principal del carrusel */
+        .carrusel {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        /* Contenedor de las diapositivas (una al lado de la otra) */
+        .carrusel-slides {
+            display: flex;
+            width: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        /* Cada diapositiva individual */
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            display: block;
+            height: 400px;
+            object-fit: cover; /* Ajusta la imagen sin deformarla */
+        }
+
+        /* Botones de navegación (Atrás / Adelante) */
+        .btn-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+
+        .btn-nav:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev { left: 15px; }
+        .next { right: 15px; }
+
+        /* Indicadores de posición (Puntitos abajo) */
+        .indicadores {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .punto {
+            width: 12px;
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .punto.activo {
+            background-color: white;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <!-- BARRA DE NAVEGACIÓN -->
+   <header class="header">
+        <a href="#inicio" class="logo">
+            OLLITSAC STUDIO<span>®</span>
+        </a>
+
+        <nav class="nav">
+            <a href="#trabajos">Proyectos</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#sobre-mi">Sobre mí</a>
+        </nav>
+
+        <a href="#contacto" class="header-cta">
+            Hablemos <span>↗</span>
+        </a>
+    </header>
+
+
+     <div class="carrusel">
+        <!-- Contenedor de imágenes -->
+        <div class="carrusel-slides" id="slides">
+            <div class="slide">
+                <a href="https://www.behance.net/gallery/251799453/OLLITSAC-STUDIO-PERSONAL-IDENTITY" target="_blank">
+                    <img src="./imagenes/logo.png" alt="Imagen 1">
+                </a>
+            </div>
+            <div class="slide">
+                <img src="https://picsum.photos" alt="Imagen 2">
+            </div>
+            <div class="slide">
+                <img src="https://picsum.photos" alt="Imagen 3">
+            </div>
+        </div>
+
+        <!-- Botones de control -->
+        <button class="btn-nav prev" onclick="cambiarSlide(-1)">&#10094;</button>
+        <button class="btn-nav next" onclick="cambiarSlide(1)">&#10095;</button>
+
+        <!-- Indicadores de posición -->
+        <div class="indicadores">
+            <div class="punto activo" onclick="irASlide(0)"></div>
+            <div class="punto" onclick="irASlide(1)"></div>
+            <div class="punto" onclick="irASlide(2)"></div>
+        </div>
+    </div>
+
+    <script>
+        let indiceActual = 0;
+        const slides = document.getElementById('slides');
+        const puntos = document.querySelectorAll('.punto');
+        const totalSlides = document.querySelectorAll('.slide').length;
+
+        function actualizarCarrusel() {
+            // Desplaza el contenedor horizontalmente según el índice
+            slides.style.transform = `translateX(-${indiceActual * 100}%)`;
+
+            // Actualiza los puntitos activos
+            puntos.forEach((punto, index) => {
+                punto.classList.toggle('activo', index === indiceActual);
+            });
+        }
+
+        function cambiarSlide(direccion) {
+            indiceActual += direccion;
+
+            // Bucle infinito: si pasa del último vuelve al primero, y viceversa
+            if (indiceActual >= totalSlides) {
+                indiceActual = 0;
+            } else if (indiceActual < 0) {
+                indiceActual = totalSlides - 1;
+            }
+            actualizarCarrusel();
+        }
+
+        function irASlide(indice) {
+            indiceActual = indice;
+            actualizarCarrusel();
+        }
+
+        // Opcional: Movimiento automático cada 5 segundos
+        setInterval(() => {
+            cambiarSlide(1);
+        }, 5000);
+    </script>
+
+
+
+</body>
